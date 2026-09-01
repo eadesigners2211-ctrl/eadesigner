@@ -10,11 +10,14 @@ export function replaceVariables(value: string, variables: Record<string, unknow
 export function prepareRender(payload: RenderPayload) {
   return {
     canvas: payload.layout.canvas,
-    elements: payload.layout.elements.map((element: any) => ({
+    elements: (payload.layout.elements || []).map((element: any) => ({
       ...element,
       value: typeof element.value === 'string'
         ? replaceVariables(element.value, payload.variables)
-        : element.value
+        : element.value,
+      src: typeof element.src === 'string'
+        ? replaceVariables(element.src, payload.variables)
+        : element.src
     }))
   };
 }
