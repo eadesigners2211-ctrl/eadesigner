@@ -1,0 +1,14 @@
+{
+  "name": "ea-creative-engine",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
