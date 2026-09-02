@@ -1,12 +1,21 @@
+import { ReactNode } from 'react';
+import { useAuth } from './useAuth';
+
 type ProtectedRouteProps = {
-  children: React.ReactNode;
-  authenticated?: boolean;
+  children: ReactNode;
+  fallback?: ReactNode;
 };
 
-export function ProtectedRoute({ children, authenticated = false }: ProtectedRouteProps) {
-  if (!authenticated) {
-    return null;
+export function ProtectedRoute({ children, fallback }: ProtectedRouteProps) {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return fallback ?? <div>Carregando...</div>;
   }
 
-  return children;
+  if (!user) {
+    return fallback ?? <div>Acesso restrito. Faça login.</div>;
+  }
+
+  return <>{children}</>;
 }
