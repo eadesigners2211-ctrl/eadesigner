@@ -1,14 +1,35 @@
-export interface CanvasRenderContext {
+export type RenderCanvas = {
   width: number;
   height: number;
-  elements: unknown[];
-}
+};
 
-export async function renderCanvas(context: CanvasRenderContext) {
+export type RenderElement = {
+  id: string;
+  type: 'text' | 'image' | 'shape' | 'background';
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  content?: string;
+  src?: string;
+};
+
+export type RenderLayout = {
+  canvas: RenderCanvas;
+  elements: RenderElement[];
+};
+
+/**
+ * Base renderer contract.
+ * Converts layout_json into a render pipeline payload.
+ */
+export function prepareCanvasRender(layout: RenderLayout) {
   return {
-    status: 'ready',
-    width: context.width,
-    height: context.height,
-    elements: context.elements.length,
+    canvas: layout.canvas,
+    layers: layout.elements.map((element) => ({
+      id: element.id,
+      type: element.type,
+      properties: element,
+    })),
   };
 }
