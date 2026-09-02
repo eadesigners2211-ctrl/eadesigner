@@ -13,7 +13,9 @@
     "react-router-dom": "latest",
     "@supabase/supabase-js": "latest",
     "@tanstack/react-query": "latest",
-    "zustand": "latest"
+    "zustand": "latest",
+    "react-konva": "latest",
+    "konva": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
