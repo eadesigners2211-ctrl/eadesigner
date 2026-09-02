@@ -8,8 +8,24 @@ export interface ElementProperties {
 }
 
 export function PropertiesPanel({ properties }: { properties?: ElementProperties }) {
-  return {
-    title: 'Properties',
-    properties: properties ?? {},
-  };
+  return (
+    <aside>
+      <h3>Propriedades</h3>
+      <div>
+        X: {properties?.x ?? 0}
+      </div>
+      <div>
+        Y: {properties?.y ?? 0}
+      </div>
+      <div>
+        Tamanho: {properties?.width ?? 0} x {properties?.height ?? 0}
+      </div>
+      <div>
+        Fonte: {properties?.fontSize ?? 0}
+      </div>
+      <div>
+        Valor: {properties?.value ?? ''}
+      </div>
+    </aside>
+  );
 }
