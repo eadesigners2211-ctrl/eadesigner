@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getTemplates } from '../templates/templateService';
+import TemplateCard from '../components/TemplateCard';
 
 export default function Templates() {
   const [templates, setTemplates] = useState<any[]>([]);
@@ -13,13 +14,17 @@ export default function Templates() {
       <h1>Templates</h1>
       <p>Biblioteca de modelos da E&A</p>
 
+      <button>Novo Template</button>
+
       {templates.length === 0 ? (
         <p>Nenhum template cadastrado.</p>
       ) : (
         templates.map((template) => (
-          <div key={template.id}>
-            {template.name}
-          </div>
+          <TemplateCard
+            key={template.id}
+            name={template.name}
+            format={template.format}
+          />
         ))
       )}
     </main>
