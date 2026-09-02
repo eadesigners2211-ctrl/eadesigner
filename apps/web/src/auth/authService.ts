@@ -1,21 +1,13 @@
-export type AuthUser = {
-  id: string;
-  email?: string;
-  organizationId?: string;
-};
+import { supabase } from './supabaseClient'
 
-export async function signIn(email: string, password: string) {
-  return {
-    email,
-    password,
-    authenticated: true,
-  };
+export async function signIn(email:string,password:string){
+  return supabase.auth.signInWithPassword({email,password})
 }
 
-export async function signOut() {
-  return true;
+export async function signOut(){
+  return supabase.auth.signOut()
 }
 
-export function getCurrentUser(): AuthUser | null {
-  return null;
+export async function getSession(){
+  return supabase.auth.getSession()
 }
