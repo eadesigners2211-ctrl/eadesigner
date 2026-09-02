@@ -4,7 +4,11 @@ export function Canvas({ state }: { state: EditorState }) {
   return (
     <div>
       Canvas {state.canvas.width}x{state.canvas.height}
-      <div>{state.elements.length} elementos</div>
+      {state.elements.map((element) => (
+        <div key={element.id}>
+          {element.type}: {element.content ?? element.id}
+        </div>
+      ))}
     </div>
   );
 }
